@@ -6,7 +6,16 @@ const Product = require('../models/product.model')
 const productRoutes = express.Router();
 
 productRoutes.route('/').get((req, res) => {
-    res.json('Hello GET')
+    mongoose.connect(config.DB)
+    Product.find().exec((err, products) => {
+        if (err) {
+            res.status(400)
+            mongoose.connection.close()
+        } else {
+            res.status(200).json(products)
+            mongoose.connection.close()
+        }
+    })
 })
 
 productRoutes.route('/add').post((req, res) => {

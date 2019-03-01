@@ -52,4 +52,13 @@ productRoutes.route('/update/:id').post((req, res) => {
     })
 })
 
+productRoutes.route('/:id').get((req, res) => {
+    mongoose.connect(config.DB)
+    const id = req.params.id
+    Product.findById(id, (err, product) => {
+        res.status(200).json(product)
+        mongoose.connection.close()
+    })
+})
+
 module.exports = productRoutes

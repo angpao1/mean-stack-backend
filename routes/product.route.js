@@ -61,4 +61,17 @@ productRoutes.route('/:id').get((req, res) => {
     })
 })
 
+productRoutes.route('/delete/:id').post((req, res) => {
+    mongoose.connect(config.DB)
+    Product.findByIdAndDelete({ _id: req.params.id }, err => {
+        if (err) {
+            res.status(400).json(err)
+            mongoose.connection.close()
+        } else {
+            res.status(200).json('Delete Product Success')
+            mongoose.connection.close()
+        }
+    })
+})
+
 module.exports = productRoutes

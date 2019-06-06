@@ -8,4 +8,4 @@ let ProductSchema = new Schema({
 
 })
 
-module.exports = mongoose.model('Prodcut', ProductSchema, 'products')
+module.exports = mongoose.model('Prodcut', ProductSchema, 'spring')

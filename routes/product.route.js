@@ -74,4 +74,13 @@ productRoutes.route('/delete/:id').post((req, res) => {
     })
 })
 
+productRoutes.route('/test').post((req, res) => {
+    res.json(req.body);
+})
+
+productRoutes.route('/sum').post((req, res) => {
+    result = req.body.x + req.body.y
+    res.json(result)
+})
+
 module.exports = productRoutes
